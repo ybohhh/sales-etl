@@ -1,41 +1,63 @@
-# AWS Serverless Sales ETL Pipeline
+# Sales Analytics ETL Pipeline (AWS + Python + Flask)
 
-**One-line:** Event-driven serverless ETL that validates, cleans and aggregates e-commerce sales CSVs using S3 → Lambda → RDS (Postgres), with CloudWatch monitoring & SNS alerts.  
-Demo-ready for interviews.
+A fully functional **cloud ETL pipeline** built with **AWS Lambda, S3, RDS Postgres, CloudWatch**, and a **Flask Dashboard** for data visualization.
 
----
-
-## Repository contents
-- `lambda/` — Lambda handler & requirements (ETL logic)
-- `generate_sales_data.py` — synthetic sales generator (for local testing)
-- `dashboard.py` — small Flask dashboard (local demo)
-- `templates/index.html` — dashboard HTML
-- `schema.sql` — database schema (create required tables)
-- `screenshots/` — recommended screenshots for portfolio (add PNGs here)
-- `.gitignore`, `LICENSE`
+Designed to showcase skills for **AE / DA / DE** roles:
+- Data ingestion & validation  
+- Cloud pipeline automation  
+- SQL-based analytics  
+- Monitoring & alerting  
+- Dashboard development  
 
 ---
 
-## Quick demo (what I will show in interviews)
-1. Upload CSV → S3 triggers Lambda (show CloudWatch logs).  
-2. Lambda writes cleaned data + metrics to RDS → show SQL results.  
-3. CloudWatch custom metrics & SNS email alert demo.  
-4. Local Flask dashboard reads metrics and shows trends.
+# 🚀 Architecture
+
+![Architecture](architecture.png)
+
+**Pipeline Summary**
+1. Raw sales CSV files uploaded to **S3**  
+2. **AWS Lambda** triggers on upload  
+3. Data is cleaned & validated → written into **PostgreSQL RDS**  
+4. Metrics (daily revenue, top categories) are written to a reporting table  
+5. Dashboard pulls processed metrics and renders interactive charts  
+6. **CloudWatch** logs & alerts monitor latency and failures  
 
 ---
 
-## How to run the dashboard locally (for reviewers)
+# 📊 Features
 
-**Prereqs**
-- Python 3.11/3.13
-- `psql` client (optional)
-- Access to the RDS instance (security group must allow your IP)
-- AWS CLI configured (optional for S3 uploads)
+### ✔ Automated ETL
+- Lambda parses raw CSV  
+- Cleans missing values, normalizes fields  
+- Inserts into fact + analytics tables  
+- Generates daily metrics  
 
-**1. Create venv & install**
-```bash
-cd /path/to/sales-etl
-python3 -m venv venv
-source venv/bin/activate
-pip install -r lambda/requirements.txt    # install deps used in Lambda if needed
-pip install flask psycopg2-binary
+### ✔ Dashboard (Flask)
+![Dashboard Screenshot](dashboard_screenshot.png)
+
+- Daily revenue line chart  
+- Category breakdown pie chart  
+- Filter by date  
+- Served locally or via Docker  
+
+### ✔ AWS Monitoring & Alerting
+- Lambda error alerts (SNS)  
+- CloudWatch latency dashboard  
+- Log insights queries for debugging  
+
+---
+
+# 🛠 Tech Stack
+
+| Layer | Tools |
+|------|-------|
+| Cloud | AWS Lambda, S3, RDS Postgres, CloudWatch, IAM |
+| Backend | Python, psycopg2, Pandas |
+| Dashboard | Flask, HTML/CSS, Chart.js |
+| Data | SQL, ETL, Data Modeling |
+
+---
+
+# 📁 Repository Structure
+
