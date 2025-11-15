@@ -1,0 +1,19 @@
+# Flask dashboard
+flask
+jinja2
+
+# AWS Lambda local testing (optional)
+boto3
+
+# Database
+psycopg2-binary
+
+# Data processing
+pandas
+numpy
+
+# Chart rendering (Flask will serve JS locally)
+matplotlib
+
+# Utilities
+python-dotenv
