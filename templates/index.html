@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Analytics Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .stats { background: #f5f5f5; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Sales Analytics Dashboard</h1>
+    
+    <div class="stats">
+        <h2>Summary Statistics (Last 7 Days)</h2>
+        {% if stats %}
+            <p>Total Transactions: {{ stats[0] or 0 }}</p>
+            <p>Total Revenue: ${{ "%.2f"|format(stats[1] or 0) }}</p>
+            <p>Average Transaction Value: ${{ "%.2f"|format(stats[2] or 0) }}</p>
+            <p>Unique Customers: {{ stats[3] or 0 }}</p>
+        {% else %}
+            <p>No statistics available</p>
+        {% endif %}
+    </div>
+
+    <h2>Recent Data Quality Logs</h2>
+    {% if quality_logs %}
+        <table>
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Total Records</th>
+                    <th>Valid Records</th>
+                    <th>Invalid Records</th>
+                    <th>Quality Rate (%)</th>
+                    <th>Processed At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in quality_logs %}
+                <tr>
+                    <td>{{ log[0] }}</td>
+                    <td>{{ log[1] }}</td>
+                    <td>{{ log[2] }}</td>
+                    <td>{{ log[3] }}</td>
+                    <td>{{ log[4] }}</td>
+                    <td>{{ log[5] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No quality logs available</p>
+    {% endif %}
+
+    <h2>Sales Trends</h2>
+    {% if trends %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transactions</th>
+                    <th>Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trend in trends %}
+                <tr>
+                    <td>{{ trend[0] }}</td>
+                    <td>{{ trend[1] }}</td>
+                    <td>${{ "%.2f"|format(trend[2]) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No trend data available</p>
+    {% endif %}
+</body>
+</html>
