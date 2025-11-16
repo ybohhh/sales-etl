@@ -46,7 +46,7 @@ Below is the full architecture of this project:
 ![Dashboard Screenshot](dashboard_screenshot.png)
 
 ## 📁 Repository Structure
-‘’‘
+```
 sales-etl/
 │
 ├── generate_sales_data.py # Generates synthetic sales events
@@ -67,7 +67,8 @@ sales-etl/
 ├── dashboard_screenshot.png # Dashboard screenshot
 ├── requirements.txt # Project-level Python dependencies
 └── README.md
-’‘’
+```
+---
 
 ## 📚 Data Model
 
