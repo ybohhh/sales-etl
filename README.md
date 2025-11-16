@@ -50,6 +50,7 @@ sales-etl/
 │
 ├── generate_sales_data.py # Generates synthetic sales events
 ├── dashboard.py # Flask dashboard for analytics
+│
 ├── lambda/
 │ ├── lambda_function.py # Main ETL Lambda script
 │ ├── requirements.txt # Lambda dependencies
@@ -66,59 +67,62 @@ sales-etl/
 ├── requirements.txt # Project-level Python dependencies
 └── README.md
 
+
+---
+
 ## 📚 Data Model
 
-**Table: daily_metrics**
+### **Table: `daily_metrics`**
 
-| Column | Type | Description |
-|--------|------|-------------|
-| date | DATE | Sales date |
-| total_revenue | NUMERIC | Total daily revenue |
-| total_units_sold | INT | Total quantity sold |
-| unique_customers | INT | Number of distinct buyers |
-| order_count | INT | Number of transactions |
-| top_product | TEXT | Best-selling product |
-| created_at | TIMESTAMP | ETL load timestamp |
+| Column          | Type        | Description                    |
+|-----------------|-------------|--------------------------------|
+| date            | DATE        | Sales date                     |
+| total_revenue   | NUMERIC     | Total daily revenue            |
+| total_units_sold| INT         | Total quantity sold            |
+| unique_customers| INT         | Number of distinct buyers      |
+| order_count     | INT         | Number of transactions         |
+| top_product     | TEXT        | Best-selling product           |
+| created_at      | TIMESTAMP   | ETL load timestamp             |
+
+---
 
 ## 🔄 ETL Flow
 
-1. Generate CSV using `generate_sales_data.py`
-2. CSV uploaded to S3 bucket
-3. S3 triggers AWS Lambda
-4. Lambda parses CSV, validates data, computes metrics
-5. Lambda inserts aggregated metrics into PostgreSQL RDS
-6. Flask dashboard queries RDS to render daily insights
+1. Generate CSV using `generate_sales_data.py`  
+2. CSV uploaded to S3  
+3. S3 triggers AWS Lambda  
+4. Lambda parses CSV, validates data, computes metrics  
+5. Lambda inserts aggregated metrics into PostgreSQL RDS  
+6. Flask dashboard queries RDS to render daily insights  
+
+---
 
 ## ▶ How to Run Locally (Dashboard)
 
-### 1️⃣ Install dependencies
+### **1️⃣ Install dependencies**
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-pip install -r requirements.txt
 
-2️⃣ Set environment variables
 
-Create a .env file:
+### **2️⃣ Set environment variables**
 
-env
+Create a `.env` file:
+
+```bash
 DB_HOST=your-rds-endpoint
 DB_NAME=salesdb
 DB_USER=postgres
 DB_PASSWORD=your_password
-3️⃣ Start the dashboard
 
-bash
+### **3️⃣ Start the dashboard
 python3 dashboard.py
-Runs at: 👉 http://localhost:5000
+Dashboard will run at:
+👉 http://localhost:5000
 
-🧩 AWS Lambda Deployment
-
-From project root:
-
-bash
+### **🧩 AWS Lambda Deployment
 docker run --rm \
  -v "$(pwd)":/var/task \
  public.ecr.aws/lambda/python:3.13 \
@@ -127,9 +131,8 @@ docker run --rm \
  cp lambda/lambda_function.py lambda/package/ && \
  cd lambda/package && \
  zip -r ../sales-etl-lambda.zip ."
-Upload sales-etl-lambda.zip to AWS Lambda console.
 
-📊 Sample Queries
+### **📊 Sample Queries
 
 Check the sql/ directory for sample analytical queries and schema definition.
 
