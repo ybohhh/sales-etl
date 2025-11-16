@@ -119,14 +119,14 @@ DB_USER=postgres
 DB_PASSWORD=your_password
 ```
 
-### **3️⃣ Start the dashboard
+### 3️⃣ Start the dashboard
 ```bash
 python3 dashboard.py
 ```
 Dashboard will run at:
 👉 http://localhost:5000
 
-### **🧩 AWS Lambda Deployment
+### 🧩 AWS Lambda Deployment
 ```bash
 docker run --rm \
  -v "$(pwd)":/var/task \
@@ -138,7 +138,7 @@ docker run --rm \
  zip -r ../sales-etl-lambda.zip ."
 ```
 
-### **📊 Sample Queries
+### 📊 Sample Queries
 
 Check the sql/ directory for sample analytical queries and schema definition.
 
