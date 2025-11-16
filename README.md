@@ -99,7 +99,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements.txt
 
-###2️⃣ Set environment variables
+### 2️⃣ Set environment variables
 
 Create a .env file:
 DB_HOST=your-rds-endpoint
