@@ -46,3 +46,35 @@ Below is the full architecture of this project:
 ![Dashboard Screenshot](dashboard_screenshot.png)
 
 ## 📁 Repository Structure
+
+## 📚 Data Model
+
+**Table: daily_metrics**
+
+| Column | Type | Description |
+|--------|------|-------------|
+| date | DATE | Sales date |
+| total_revenue | NUMERIC | Total daily revenue |
+| total_units_sold | INT | Total quantity sold |
+| unique_customers | INT | Number of distinct buyers |
+| order_count | INT | Number of transactions |
+| top_product | TEXT | Best-selling product |
+| created_at | TIMESTAMP | ETL load timestamp |
+
+## 🔄 ETL Flow
+
+1. Generate CSV using `generate_sales_data.py`
+2. CSV uploaded to S3 bucket
+3. S3 triggers AWS Lambda
+4. Lambda parses CSV, validates data, computes metrics
+5. Lambda inserts aggregated metrics into PostgreSQL RDS
+6. Flask dashboard queries RDS to render daily insights
+
+## ▶ How to Run Locally (Dashboard)
+
+### 1️⃣ Install dependencies
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
