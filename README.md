@@ -46,6 +46,25 @@ Below is the full architecture of this project:
 ![Dashboard Screenshot](dashboard_screenshot.png)
 
 ## 📁 Repository Structure
+sales-etl/
+│
+├── generate_sales_data.py # Generates synthetic sales events
+├── dashboard.py # Flask dashboard for analytics
+├── lambda/
+│ ├── lambda_function.py # Main ETL Lambda script
+│ ├── requirements.txt # Lambda dependencies
+│ └── package/ # Bundled Lambda deployment package
+│
+├── templates/
+│ └── index.html # Dashboard HTML template
+│
+├── sql/
+│ └── schema.sql # Database schema definition
+│
+├── architecture.png # System architecture diagram
+├── dashboard_screenshot.png # Dashboard screenshot
+├── requirements.txt # Project-level Python dependencies
+└── README.md
 
 ## 📚 Data Model
 
@@ -78,3 +97,37 @@ Below is the full architecture of this project:
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+pip install -r requirements.txt
+
+2️⃣ Set environment variables
+
+Create a .env file:
+DB_HOST=your-rds-endpoint
+DB_NAME=salesdb
+DB_USER=postgres
+DB_PASSWORD=your_password
+
+3️⃣ Start the dashboard
+
+python3 dashboard.py
+Runs at: 👉 http://localhost:5000
+
+🧩 AWS Lambda Deployment
+
+From project root:
+
+docker run --rm \
+ -v "$(pwd)":/var/task \
+ public.ecr.aws/lambda/python:3.13 \
+ bash -c "\
+ pip install -r lambda/requirements.txt -t lambda/package/ && \
+ cp lambda/lambda_function.py lambda/package/ && \
+ cd lambda/package && \
+ zip -r ../sales-etl-lambda.zip ."
+Upload sales-etl-lambda.zip to AWS Lambda console.
+
+📊 Sample Queries
+
+Check the sql/ directory for sample analytical queries and schema definition.
+
+Contributors: Yu Bo
