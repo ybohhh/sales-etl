@@ -105,6 +105,7 @@ sales-etl/
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
 
 
 ### **2️⃣ Set environment variables**
@@ -116,13 +117,17 @@ DB_HOST=your-rds-endpoint
 DB_NAME=salesdb
 DB_USER=postgres
 DB_PASSWORD=your_password
+```
 
 ### **3️⃣ Start the dashboard
+```bash
 python3 dashboard.py
+```
 Dashboard will run at:
 👉 http://localhost:5000
 
 ### **🧩 AWS Lambda Deployment
+```bash
 docker run --rm \
  -v "$(pwd)":/var/task \
  public.ecr.aws/lambda/python:3.13 \
@@ -131,6 +136,7 @@ docker run --rm \
  cp lambda/lambda_function.py lambda/package/ && \
  cd lambda/package && \
  zip -r ../sales-etl-lambda.zip ."
+```
 
 ### **📊 Sample Queries
 
