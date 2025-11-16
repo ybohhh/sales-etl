@@ -99,7 +99,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements.txt
 
-2️⃣ Set environment variables
+###2️⃣ Set environment variables
 
 Create a .env file:
 DB_HOST=your-rds-endpoint
@@ -107,12 +107,12 @@ DB_NAME=salesdb
 DB_USER=postgres
 DB_PASSWORD=your_password
 
-3️⃣ Start the dashboard
+###3️⃣ Start the dashboard
 
 python3 dashboard.py
 Runs at: 👉 http://localhost:5000
 
-🧩 AWS Lambda Deployment
+###🧩 AWS Lambda Deployment
 
 From project root:
 
@@ -126,7 +126,7 @@ docker run --rm \
  zip -r ../sales-etl-lambda.zip ."
 Upload sales-etl-lambda.zip to AWS Lambda console.
 
-📊 Sample Queries
+###📊 Sample Queries
 
 Check the sql/ directory for sample analytical queries and schema definition.
 
