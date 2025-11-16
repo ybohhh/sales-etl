@@ -68,8 +68,6 @@ sales-etl/
 └── README.md
 
 
----
-
 ## 📚 Data Model
 
 ### **Table: `daily_metrics`**
